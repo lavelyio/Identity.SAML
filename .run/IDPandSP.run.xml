@@ -1,0 +1,7 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="IDPandSP" type="CompoundRunConfigurationType">
+    <toRun name="TestIdPCore: Project" type="LaunchSettings" />
+    <toRun name="TestWebAppCore: Project" type="LaunchSettings" />
+    <method v="2" />
+  </configuration>
+</component>

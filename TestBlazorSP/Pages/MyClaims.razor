@@ -1,0 +1,31 @@
+﻿@page "/MyClaims"
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Http
+@using System.Security.Claims
+@inject IHttpContextAccessor context;
+
+
+<div class="uk-container-expand uk-margin-top">
+	<h2 class="uk-heading-small">Your Claims</h2>
+	<div class="uk-text-left uk-flex uk-flex-left uk-flex-wrap">
+		@foreach (var claim in context.HttpContext.User.Claims) 
+		{
+			<div class="uk-card uk-card-default uk-card-body uk-width-1-1@s" style=@CardStyles>
+					<h3 class="uk-card-title">@claim.Value</h3>
+					<p>@claim.Type</p>
+				</div>
+		}
+	</div>
+</div>
+
+@code {
+
+	private string nameIdentifier { get; set; }
+	private string CardStyles = "max-width: 450px; font-size: smaller; overflow-wrap: break-word; margin: 15px 10px;";
+
+	[Authorize]
+	protected override void OnInitialized()
+	{
+		nameIdentifier = context.HttpContext.User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).Single();	
+	}
+}

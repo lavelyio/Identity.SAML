@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "MyClaims";
+}
+
+<div class="uk-container-expand uk-margin-top">
+	<h2 class="uk-heading-small">Your Claims</h2>
+	<div class="uk-text-left uk-flex uk-flex-left uk-flex-wrap">
+		@foreach(var claim in User.Claims) 
+		{
+			<div class="uk-card uk-card-default uk-card-body uk-width-1-1@s" style="max-width: 450px; font-size: smaller; overflow-wrap: break-word; margin: 15px 10px;">
+					<h3 class="uk-card-title">@claim.Value</h3>
+					<p>@claim.Type</p>
+				</div>
+		}
+	</div>
+</div>

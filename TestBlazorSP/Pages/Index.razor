@@ -1,0 +1,50 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Http
+@using System.Security.Claims
+@inject IHttpContextAccessor context;
+
+
+<div class="uk-section uk-section-muted">
+    <div class="uk-container">
+
+       <h1 class="uk-heading-medium">JAGC Blazor Server SAML SP</h1>
+
+        <div class="uk-width-1-1">
+            @if (@context.HttpContext.User.Identity.IsAuthenticated) {
+			<h2>You're logged in</h2>
+			<p class="uk-text-lead">
+				Welcome,
+				<span class="uk-background-muted">@context.HttpContext.User.Identity.Name</span>
+				</p>
+			} else {
+				<h2>Login test</h2>
+				<p class="uk-text-lead"> <a asp-controller="Auth" asp-action="Login"></a>Login or go to the <a asp-controller="Home" asp-action="Secure">Secure</a> Page to login.</p>
+			}
+        </div>
+
+    </div>
+</div>
+
+@if (@context.HttpContext.User.Identity.IsAuthenticated) {
+
+    <div class="uk-container">
+            <table class="uk-table uk-table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Claim Type</th>
+                <th scope="col">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var claim in @context.HttpContext.User.Claims) {
+                <tr>
+                    <td>@claim.Type</td>
+                    <td>@claim.Value</td>
+                </tr>
+            }
+            </tbody>
+            </table>
+
+    </div>
+}

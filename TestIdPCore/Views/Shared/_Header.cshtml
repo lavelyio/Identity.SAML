@@ -1,0 +1,30 @@
+﻿		<header id="top-head" class="uk-position-fixed">
+				<div class="uk-container uk-container-expand" style="background-color: #222a30;">
+					<nav class="uk-navbar uk-light" uk-navbar="mode:click; duration: 250">
+						<div class="uk-navbar-left">
+							<div class="uk-navbar-item uk-hidden@s">
+								<a class="uk-logo" href="#">
+									<img class="custom-logo" style="height: 75px; margin-top: 25px" src="jagc-saml.png" alt="">
+								</a>
+							</div>
+							<ul class="uk-navbar-nav uk-visible@m">
+								<li>
+									<a asp-controller="Home" asp-action="Index">
+										<span uk-icon="icon: home"></span>
+										Home
+									</a>
+								</li>
+								<li>
+									<a href="#">Pages <span uk-icon="icon: triangle-down"></span></a>
+									<div class="uk-navbar-dropdown">
+										<ul class="uk-nav uk-navbar-dropdown-nav">
+											<li><a asp-controller="Home" asp-action="Index"><span uk-icon="icon: home"></span> Home</a></li>
+											<li><a asp-controller="Metadata" asp-action="Index"><span uk-icon="icon: gears"></span> MetaData</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+		</header>

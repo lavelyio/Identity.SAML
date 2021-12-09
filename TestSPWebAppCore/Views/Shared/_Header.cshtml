@@ -1,0 +1,52 @@
+﻿		<header id="top-head" class="uk-position-fixed">
+				<div class="uk-container uk-container-expand" style="background-color: #222a30">
+					<nav class="uk-navbar uk-light" uk-navbar="mode:click; duration: 250">
+						<div class="uk-navbar-left">
+
+							<ul class="uk-navbar-nav uk-visible@m">
+								<li>
+									<a asp-controller="Home" asp-action="Index">
+										<span uk-icon="icon: home"></span>
+										Home
+									</a>
+								</li>
+								<li>
+									<a asp-controller="Home" asp-action="Dashboard">
+										<span uk-icon="icon: grid"></span>
+										Dashboard
+									</a>
+								</li>
+								<li>
+									<a asp-controller="MyClaims" asp-action="Index">
+										<span uk-icon="icon: link"></span>
+										Claims
+									</a>
+								</li>
+								<li>
+									<a href="#">Pages <span uk-icon="icon: triangle-down"></span></a>
+									<div class="uk-navbar-dropdown">
+										<ul class="uk-nav uk-navbar-dropdown-nav">
+											<li class="uk-nav-header">IDP Initiated</li>
+											<li><a href="https://localhost:44305/Auth/Login" class="uk-disabled"><span data-uk-icon="icon: info"></span> Test Idp</a></li>
+											<li><a asp-controller="IdPInitiated" asp-action="InitiateADFS"><span data-uk-icon="icon: refresh"></span> ADFS, Test Idp </a></li>
+											<li><a href="https://account.activedirectory.windowsazure.us/signin/a8870e13-0c30-4fe8-9ce4-6fb6f1dfe14a?tenantId=fe738758-04ef-41bc-ac38-bcee2c0da636"><span data-uk-icon="icon: settings"></span> Azure Idp</a></li>
+											<li class="uk-nav-divider"></li>
+											<li><a asp-controller="Metadata" asp-action="Index"><span data-uk-icon="icon: image"></span> MetaData</a></li>
+											<li><a asp-controller="Home" asp-action="Secure"><span data-uk-icon="icon: image"></span> Secure Page</a></li>
+											<li class="uk-nav-divider"></li>
+											<li><a href="#"><span data-uk-icon="icon: sign-out"></span> Logout</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="uk-navbar-right">
+							
+							<ul class="uk-navbar-nav">
+								<li><a class="uk-navbar-toggle" uk-toggle data-uk-navbar-toggle-icon href="#offcanvas-nav" title="Offcanvas" uk-tooltip></a></li>
+							</ul>
+							 <partial name="_LoginPartial" />
+						</div>
+					</nav>
+				</div>
+		</header>

@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Secured Page";
+}
+<h1>@ViewBag.Title</h1>
+
+<div class="uk-container">
+    <div class="uk-card uk-card-default uk-card-large uk-card-body">
+        <h3 class="uk-card-title">The users Claims (Iteration on User.Claims)</h3>
+        <p>
+            @foreach (var claim in User.Claims)
+            {
+				<span class="uk-animation-slide-left">
+					<strong>@claim.Type</strong> 
+					<br /> 
+					<span style="padding-left: 10px">Value: @claim.Value</span> 
+					<br />
+				</span>
+            }
+        </p>
+    </div>
+</div>
