@@ -31,7 +31,7 @@ namespace TestBlazorSP.Controllers
 
             config.Issuer = "testidpcore";
             config.SingleSignOnDestination = new Uri("https://localhost:44305/Auth/login");
-            config.SigningCertificate = CertificateUtil.Load(Environment. Startup.AppEnvironment.MapToPhysicalFilePath("jagc-az-sp.pfx"), "C4ir0sC4ir0s");
+            config.SigningCertificate = CertificateUtil.Load("jagc-az-sp.pfx", "C4ir0sC4ir0s");
             config.SignatureAlgorithm = Saml2SecurityAlgorithms.RsaSha256Signature;
             config.SignAuthnRequest = true;
 

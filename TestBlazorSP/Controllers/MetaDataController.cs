@@ -84,6 +84,7 @@ namespace TestBlazorSP.Controllers
         {
             yield return new RequestedAttribute("urn:oid:2.5.4.4");
             yield return new RequestedAttribute("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name");
+            yield return new RequestedAttribute("piv");
             yield return new RequestedAttribute("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress");
             yield return new RequestedAttribute("urn:oid:2.5.4.3", false);
         }
