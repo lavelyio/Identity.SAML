@@ -1,0 +1,37 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+- master
+
+pool:
+  name: 'default'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@1
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: 'lib/**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'lib/**/*.csproj'
+    includesymbols: true
+    includesource: true
+    versioningScheme: 'byPrereleaseNumber'
+    majorVersion: '1'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
+    custom: 'dotnet nuget push -s http://jagc-az-devops1:8080/v3/index.json $(Build.ArtifactStagingDirectory)/**/*.nupkg --api-key USAF_JAGC_SYMBOLS_SECRET'
+    minorVersion: '0'
+    patchVersion: '0'
