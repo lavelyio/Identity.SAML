@@ -7,8 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="jagc-dev-ca.crt" />
+    <None Remove="keystore.p12" />
     <None Remove="TestWebAppCore.csproj.vspscc" />
     <None Remove="TestWebAppCore.xproj.vspscc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="jagc-dev-ca.crt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="keystore.p12">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +29,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\lib\JAGC.Identity.Saml.MvcCore\JAGC.Identity.Saml.MvcCore.csproj" />
+    <ProjectReference Include="..\lib\JAGC.Identity.Saml.MvcCore\JAGC.Identity.Saml.MvcCore.csproj">
+      <CopyLocal>True</CopyLocal>
+      <CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+      <IncludeAssets>all</IncludeAssets>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="jagc-az-sp.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

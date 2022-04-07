@@ -30,11 +30,12 @@ namespace JAGC.Identity.Saml.MvcCore.Configuration
         public static IServiceCollection AddSaml2(this IServiceCollection services, string loginPath = "/Auth/Login", bool slidingExpiration = false, string accessDeniedPath = null, ITicketStore sessionStore = null, SameSiteMode cookieSameSite = SameSiteMode.Lax, string cookieDomain = null)
         {
             services.AddAuthentication(Saml2Constants.AuthenticationScheme)
+
                 .AddCookie(Saml2Constants.AuthenticationScheme, o =>
                 {
                     o.LoginPath = new PathString(loginPath);
                     o.SlidingExpiration = slidingExpiration;
-                    if(!string.IsNullOrEmpty(accessDeniedPath))
+                    if (!string.IsNullOrEmpty(accessDeniedPath))
                     {
                         o.AccessDeniedPath = new PathString(accessDeniedPath);
                     }
@@ -50,6 +51,6 @@ namespace JAGC.Identity.Saml.MvcCore.Configuration
                 });
 
             return services;
-        }   
+        }
     }
 }

@@ -1,9 +1,9 @@
 ﻿
 <aside id="left-col" class="uk-light uk-visible@m">
-			<div class="left-logo uk-flex uk-flex-middle">
-				<img class="custom-logo" src="~/jagc-saml.png" alt="">
-			</div>
-			@if (((System.Security.Claims.ClaimsIdentity)User.Identity).IsAuthenticated)
+	<div class="left-logo uk-flex uk-flex-middle">
+		<img class="custom-logo" src="~/jagc-saml.png" alt="">
+	</div>
+	@if (((System.Security.Claims.ClaimsIdentity)User.Identity).IsAuthenticated)
 	{
 		@if (User.Identity.Name != null)
 		{
@@ -14,7 +14,7 @@
 				<div class="uk-position-relative uk-text-center uk-display-block">
 					<a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" uk-icon="icon: triangle-down; ratio: 0.7">Profile</a>
 					<!-- user dropdown -->
-				    <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
+			<div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
 						<ul class="uk-nav uk-dropdown-nav uk-text-left">
 							<li><a href="#"><span uk-icon="icon: info"></span> Summary</a></li>
 							<li><a href="#"><span uk-icon="icon: refresh"></span> Edit</a></li>
@@ -26,62 +26,47 @@
 						</ul>
 					</div>
 					<!-- /user dropdown -->
-				</div>
+		</div>
 			</div>
 		}
 	}
-			
-			<div class="left-nav-wrap">
-				<ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="true">
-					<li class="uk-nav-header">Areas</li>
-					<li><a asp-controller="MetaData" asp-action="Index"><span uk-icon="icon: comments" class="uk-margin-small-right"></span>MetaData</a></li>
-					<li><a href="#"><span uk-icon="icon: users" class="uk-margin-small-right"></span>Diagrams</a></li>
-					<li class="uk-parent"><a href="#"><span uk-icon="icon: thumbnails" class="uk-margin-small-right"></span>Idp Initiated</a>
-						<ul class="uk-nav-sub">
-							<li>
-								<a href="https://localhost:44305/Auth/Login" class="uk-disabled"><span data-uk-icon="icon: info"></span> Test Idp</a></li>
-											<li><a asp-controller="IdPInitiated" asp-action="InitiateADFS"><span data-uk-icon="icon: refresh"></span> ADFS, Test Idp </a></li>
-											<li><a href="https://account.activedirectory.windowsazure.us/signin/a8870e13-0c30-4fe8-9ce4-6fb6f1dfe14a?tenantId=fe738758-04ef-41bc-ac38-bcee2c0da636"><span data-uk-icon="icon: settings"></span> Azure Idp</a></li>
-											<li class="uk-nav-divider"></li>
-											<li><a asp-controller="Metadata" asp-action="Index"><span data-uk-icon="icon: image"></span> MetaData</a></li>
-											<li><a asp-controller="Home" asp-action="Secure"><span data-uk-icon="icon: image"></span> Secure Page</a></li>
-						</ul>
-					</li>
+
+	<div class="left-nav-wrap">
+		<ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="true">
+			<li class="uk-nav-header">Areas</li>
+			<li><a asp-controller="MetaData" asp-action="Index"><span uk-icon="icon: comments" class="uk-margin-small-right"></span>MetaData</a></li>
+			<li><a href="#"><span uk-icon="icon: users" class="uk-margin-small-right"></span>Diagrams</a></li>
+			<li class="uk-parent">
+				<a href="#"><span uk-icon="icon: thumbnails" class="uk-margin-small-right"></span>Idp Initiated</a>
+				<ul class="uk-nav-sub">
+					<li>
+
+					<li><a asp-controller="IdPInitiated" asp-action="InitiateADFS"><span data-uk-icon="icon: refresh"></span> ADFS, Test Idp </a></li>
+					<li><a href="https://account.activedirectory.windowsazure.us/signin/a8870e13-0c30-4fe8-9ce4-6fb6f1dfe14a?tenantId=fe738758-04ef-41bc-ac38-bcee2c0da636"><span data-uk-icon="icon: settings"></span> Azure Idp</a></li>
+					<li class="uk-nav-divider"></li>
+					<li><a asp-controller="Metadata" asp-action="Index"><span data-uk-icon="icon: image"></span> MetaData</a></li>
+					<li><a asp-controller="Home" asp-action="Secure"><span data-uk-icon="icon: image"></span> Secure Page</a></li>
 				</ul>
-				<div class="left-content-box uk-margin-top">
-					
-						<h5>Daily Reports</h5>
-						<div>
-							<span class="uk-text-small">Traffic <small>(+50)</small></span>
-							<progress class="uk-progress" value="50" max="100"></progress>
-						</div>
-						<div>
-							<span class="uk-text-small">Logins <small>(+78)</small></span>
-							<progress class="uk-progress success" value="78" max="100"></progress>
-						</div>
-						<div>
-							<span class="uk-text-small">Errors <small>(-12)</small></span>
-							<progress class="uk-progress warning" value="12" max="100"></progress>
-						</div>
-					
-				</div>
-				
-			</div>
-			<div class="bar-bottom">
-				<ul class="uk-subnav uk-flex uk-flex-center uk-child-width-1-5" data-uk-grid>
-					<li>
-						<a href="#" class="uk-icon-link" uk-icon="icon: home" title="Home" data-uk-tooltip></a>
-					</li>
-					<li>
-						<a href="#" class="uk-icon-link" uk-icon="icon: settings" title="Settings" data-uk-tooltip></a>
-					</li>
-					<li>
-						<a href="#" class="uk-icon-link" uk-icon="icon: social"  title="Social" data-uk-tooltip></a>
-					</li>
-					
-					<li>
-						<a href="#" class="uk-icon-link" data-uk-tooltip="Sign out" uk-icon="icon: sign-out"></a>
-					</li>
-				</ul>
-			</div>
+			</li>
+		</ul>
+
+
+	</div>
+	<div class="bar-bottom">
+		<ul class="uk-subnav uk-flex uk-flex-center uk-child-width-1-5" data-uk-grid>
+			<li>
+				<a href="#" class="uk-icon-link" uk-icon="icon: home" title="Home" data-uk-tooltip></a>
+			</li>
+			<li>
+				<a href="#" class="uk-icon-link" uk-icon="icon: settings" title="Settings" data-uk-tooltip></a>
+			</li>
+			<li>
+				<a href="#" class="uk-icon-link" uk-icon="icon: social" title="Social" data-uk-tooltip></a>
+			</li>
+
+			<li>
+				<a href="#" class="uk-icon-link" data-uk-tooltip="Sign out" uk-icon="icon: sign-out"></a>
+			</li>
+		</ul>
+	</div>
 </aside>

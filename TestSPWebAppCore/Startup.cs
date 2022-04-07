@@ -31,12 +31,13 @@ namespace TestWebAppCore
         {
             // "AzureADSaml2"
             services.Configure<Saml2Configuration>(Configuration.GetSection("Saml2"));
+
             services.Configure<Saml2Configuration>(saml2Configuration =>
             {
                 saml2Configuration.SignAuthnRequest = true;
                 saml2Configuration.SigningCertificate = CertificateUtil.Load(AppEnvironment.MapToPhysicalFilePath(Configuration["Saml2:SigningCertificateFile"]), "C4ir0sC4ir0s", X509KeyStorageFlags.UserKeySet);
 
-                saml2Configuration.SignatureValidationCertificates.Add(CertificateUtil.Load(AppEnvironment.MapToPhysicalFilePath(Configuration["Saml2:SignatureValidationCertificateFile"])));
+                //saml2Configuration.SignatureValidationCertificates.Add(CertificateUtil.Load(AppEnvironment.MapToPhysicalFilePath(Configuration["Saml2:SignatureValidationCertificateFile"])));
                 saml2Configuration.AllowedAudienceUris.Add(saml2Configuration.Issuer);
                 // Temp Work around: IDX10214: Audience validation failed. Audiences: 'System.String'. Did not match:
                 saml2Configuration.AllowedAudienceUris.Add("https://sts.windows.net/fe738758-04ef-41bc-ac38-bcee2c0da636/");

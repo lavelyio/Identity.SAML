@@ -33,19 +33,21 @@ namespace TestWebAppCore.Controllers
         public IActionResult Login(string returnUrl = null)
         {
             var binding = new Saml2RedirectBinding();
+
             binding.SetRelayStateQuery(new Dictionary<string, string> { { relayStateReturnUrl, returnUrl ?? Url.Content("~/") } });
 
             return binding.Bind(new Saml2AuthnRequest(config)
             {
                 ForceAuthn = true,
                 // Subject = new Subject { NameID = new NameID { ID = "abcd" } },
+
                 NameIdPolicy = new NameIdPolicy { AllowCreate = true, Format = "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent" },
                 Extensions = new AppExtensions(),
                 RequestedAuthnContext = new RequestedAuthnContext
                 {
-                   Comparison = AuthnContextComparisonTypes.Exact,
-                   AuthnContextClassRef = new string[] { AuthnContextClassTypes.PasswordProtectedTransport.OriginalString },
-                 },
+                    Comparison = AuthnContextComparisonTypes.Exact,
+                    AuthnContextClassRef = new string[] { AuthnContextClassTypes.PasswordProtectedTransport.OriginalString },
+                },
             }).ToActionResult();
         }
 
