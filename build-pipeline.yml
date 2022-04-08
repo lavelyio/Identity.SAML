@@ -23,6 +23,13 @@ steps:
     configuration: 'Release'
     restoreNugetPackages: true
     logProjectEvents: true
+    
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: 'TestSPWebAppCore/*.csproj'
+    arguments: '--configuration "Release"'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
@@ -33,12 +40,7 @@ steps:
     majorVersion: '1'
     minorVersion: '0'
     patchVersion: '0'
-    
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: 'TestSPWebAppCore/*.csproj'
-    arguments: '--configuration "Release"'
+
 
 - task: DotNetCoreCLI@2
   inputs:
