@@ -1,0 +1,40 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  name: 'default'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+  
+- task: NuGetCommand@2
+  inputs:
+      command: 'pack'
+      packagesToPack: 'lib/JAGC.Identity.Saml.MvcCore/*.csproj'
+      versioningScheme: 'off'
+      includeReferencedProjects: true
+      includeSymbols: true
+      
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
+    custom: 'nuget push -s http://jagc-az-devops1:8080/v3/index.json $(Build.ArtifactStagingDirectory)/*.nupkg --api-key USAF_JAGC_SYMBOLS_SECRET'
+
