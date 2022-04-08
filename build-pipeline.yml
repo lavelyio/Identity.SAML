@@ -16,19 +16,25 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: 'lib/**/*.csproj'
+    projects: 'TestSPWebAppCore/*.csproj'
+    arguments: '--configuration "Release"'
 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
-    packagesToPack: 'lib/**/*.csproj'
+    packagesToPack: 'lib/JAGC.Identity.Saml**/*.csproj'
+    nobuild: true
     includesymbols: true
     includesource: true
     versioningScheme: 'byPrereleaseNumber'
     majorVersion: '1'
+    minorVersion: '0'
+    patchVersion: '0'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'custom'
