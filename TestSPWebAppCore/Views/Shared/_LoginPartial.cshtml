@@ -3,15 +3,18 @@
 	@if (User.Identity.Name != null)
 	{
 		// Email format claim is located at array index 3, need to add to the parsing
-		<span class="uk-heading uk-margin-left">Hello, @User.Claims.ElementAtOrDefault(1).Value</span> 
+		<span class="uk-heading uk-margin-left">Hello, @User.Identity.Name</span>
 		<a class="uk-link uk-link-text uk-margin-right uk-margin-left" asp-controller="Auth" asp-action="Logout"><span uk-icon="icon: sign-out"></span></a>
-	} else {
+	}
+	else
+	{
 		<span class="uk-text-lead">Hello</span>
 	}
 
-	
+
 }
-else {
+else
+{
 	<ul class="uk-list uk-margin-right">
 		<li>
 			<a class="uk-link uk-link-text" asp-controller="Auth" asp-action="Login">Login</a>
