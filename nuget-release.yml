@@ -27,11 +27,10 @@ steps:
   
 - task: NuGetCommand@2
   inputs:
-      command: 'pack'
-      packagesToPack: 'lib/JAGC.Identity.Saml.MvcCore/JAGC.Identity.Saml.MvcCore.csproj'
-      versioningScheme: 'off'
-      includeReferencedProjects: true
-      includeSymbols: true
+    command: 'pack'
+    packagesToPack: '**\*.MvcCore.csproj'
+    versioningScheme: 'off'
+    includeSymbols: true
       
 - task: DotNetCoreCLI@2
   inputs:
