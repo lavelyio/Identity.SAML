@@ -57,12 +57,15 @@ namespace TestWebAppCore.Controllers
             var binding = new Saml2PostBinding();
             // TODO: Fix this issue
             config.AudienceRestricted = false;
+            Console.WriteLine(config);
             var saml2AuthnResponse = new Saml2AuthnResponse(config);
 
             binding.ReadSamlResponse(Request.ToGenericHttpRequest(), saml2AuthnResponse);
+            Console.WriteLine(saml2AuthnResponse);
             if (saml2AuthnResponse.Status != Saml2StatusCodes.Success)
             {
-                throw new AuthenticationException($"SAML Response status: {saml2AuthnResponse.Status}");
+                throw new AuthenticationException($"SAML Response status: {saml2AuthnResponse?.Status} : {saml2AuthnResponse.XmlDocument} : {config}");
+                //return Redirect("~/");
             }
             binding.Unbind(Request.ToGenericHttpRequest(), saml2AuthnResponse);
             await saml2AuthnResponse.CreateSession(HttpContext, claimsTransform: (claimsPrincipal) => ClaimsTransform.Transform(claimsPrincipal));

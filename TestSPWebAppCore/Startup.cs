@@ -12,6 +12,7 @@ using JAGC.Identity.Saml.MvcCore.Extensions;
 using JAGC.Identity.Saml.Schemas.Metadata;
 using JAGC.Identity.Saml.Util;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 
 namespace TestWebAppCore
 {
@@ -29,6 +30,8 @@ namespace TestWebAppCore
 
         public void ConfigureServices(IServiceCollection services)
         {
+            IdentityModelEventSource.ShowPII = true; //To show detail of error and see the problem
+
             // "AzureADSaml2"
             services.Configure<Saml2Configuration>(Configuration.GetSection("Saml2"));
 
@@ -40,8 +43,7 @@ namespace TestWebAppCore
                 //saml2Configuration.SignatureValidationCertificates.Add(CertificateUtil.Load(AppEnvironment.MapToPhysicalFilePath(Configuration["Saml2:SignatureValidationCertificateFile"])));
                 saml2Configuration.AllowedAudienceUris.Add(saml2Configuration.Issuer);
                 // Temp Work around: IDX10214: Audience validation failed. Audiences: 'System.String'. Did not match:
-                saml2Configuration.AllowedAudienceUris.Add("https://sts.windows.net/fe738758-04ef-41bc-ac38-bcee2c0da636/");
-
+                saml2Configuration.AllowedAudienceUris.Add("https://afjagc-portal-test.usgovvirginia.cloudapp.usgovcloudapi.net/realms/JAGC");
                 var entityDescriptor = new EntityDescriptor();
                 entityDescriptor.ReadIdPSsoDescriptorFromUrl(new Uri(Configuration["Saml2:IdPMetadata"]));
                 if (entityDescriptor.IdPSsoDescriptor != null)
