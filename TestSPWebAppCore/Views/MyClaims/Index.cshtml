@@ -1,16 +1,45 @@
 ﻿@{
-    ViewData["Title"] = "MyClaims";
+	ViewData["Title"] = "MyClaims";
+	var groupedClaims = User.Claims.GroupBy(claim => claim.Type);
 }
 
 <div class="uk-container-expand uk-margin-top">
 	<h2 class="uk-heading-small">Your Claims</h2>
+	@foreach (var group in groupedClaims)
+	{
+		<div class="uk-card uk-card-default uk-card-body uk-width-1-1">
+			<h3 class="uk-card-title">@group.Key</h3>
+			<table class="uk-table uk-table-striped">
+				<thead>
+					<tr>
+						<th>Attribute Type</th>
+						<th>Attribute Subject</th>
+						<th>Attribute Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var claim in group)
+					{
+						<tr>
+							<td>@claim.Type</td>
+							<td>@claim.Subject</td>
+							<td>@claim.Value</td>
+						</tr>
+					}
+
+				</tbody>
+			</table>
+
+		</div>
+	}
+	<hr />
 	<div class="uk-text-left uk-flex uk-flex-left uk-flex-wrap">
-		@foreach(var claim in User.Claims) 
+		@foreach (var claim in User.Claims)
 		{
 			<div class="uk-card uk-card-default uk-card-body uk-width-1-1@s" style="max-width: 450px; font-size: smaller; overflow-wrap: break-word; margin: 15px 10px;">
-					<h3 class="uk-card-title">@claim.Value</h3>
-					<p>@claim.Type</p>
-				</div>
+				<h3 class="uk-card-title">@claim.Value</h3>
+				<p>@claim.Type</p>
+			</div>
 		}
 	</div>
 </div>
