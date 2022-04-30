@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="afjagc-sp-prod.p12" />
     <None Remove="jagc-dev-ca.crt" />
     <None Remove="keystore.p12" />
     <None Remove="TestWebAppCore.csproj.vspscc" />
@@ -14,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="afjagc-sp-prod.p12">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="jagc-dev-ca.crt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

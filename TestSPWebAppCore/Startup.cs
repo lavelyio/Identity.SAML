@@ -44,6 +44,7 @@ namespace TestWebAppCore
                 saml2Configuration.AllowedAudienceUris.Add(saml2Configuration.Issuer);
                 // Temp Work around: IDX10214: Audience validation failed. Audiences: 'System.String'. Did not match:
                 saml2Configuration.AllowedAudienceUris.Add("https://afjagc-portal-test.usgovvirginia.cloudapp.usgovcloudapi.net/realms/JAGC");
+                saml2Configuration.AllowedAudienceUris.Add("https://afjagc-portal-prod.usgovvirginia.cloudapp.usgovcloudapi.net/realms/JAGC");
                 var entityDescriptor = new EntityDescriptor();
                 entityDescriptor.ReadIdPSsoDescriptorFromUrl(new Uri(Configuration["Saml2:IdPMetadata"]));
                 if (entityDescriptor.IdPSsoDescriptor != null)
